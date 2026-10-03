@@ -1,0 +1,742 @@
+/* =========================================================
+   PARMAR FAMILY INVITATION — STYLESHEET
+   Token system: ivory / maroon / saffron / antique gold / leaf green
+   ========================================================= */
+
+:root {
+  /* Colors */
+  --ivory: #FBF6EC;
+  --beige: #F1E6D0;
+  --maroon: #6B1420;
+  --maroon-deep: #4A0D16;
+  --saffron: #E08D3C;
+  --gold: #B8860B;
+  --gold-light: #E9C67B;
+  --leaf: #5C7A52;
+  --ink: #3A2A22;
+  --ink-soft: #6B5A4E;
+  --white: #FFFDF9;
+
+  /* Type */
+  --font-display-en: 'Cormorant Garamond', Georgia, serif;
+  --font-display-hi: 'Yatra One', 'Cormorant Garamond', serif;
+  --font-body: 'Mukta', 'Noto Sans Devanagari', system-ui, sans-serif;
+
+  /* Layout */
+  --max-width: 480px;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 28px;
+  --space-lg: 48px;
+  --space-xl: 72px;
+  --radius: 4px;
+  --border-gold: 1px solid rgba(184,134,11,0.35);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--ivory);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--maroon);
+  color: var(--white);
+  padding: 10px 16px;
+  z-index: 999;
+}
+.skip-link:focus {
+  left: 8px;
+  top: 8px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   INTRO / OPENING SCREEN
+   ========================================================= */
+
+.intro {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--space-lg) var(--space-sm);
+  text-align: center;
+}
+
+.intro-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(233,198,123,0.35), transparent 55%),
+    linear-gradient(180deg, var(--ivory) 0%, var(--beige) 100%);
+  z-index: 0;
+}
+
+.intro-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image:
+    radial-gradient(circle, var(--ink) 0.6px, transparent 0.6px);
+  background-size: 14px 14px;
+  mix-blend-mode: multiply;
+}
+
+.intro-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.intro-particles .spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  opacity: 0;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 2;
+  max-width: 380px;
+}
+
+.ganesh-wrap {
+  position: relative;
+  width: 190px;
+  height: 200px;
+  margin: 0 auto var(--space-sm);
+}
+
+.ganesh-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(233,198,123,0.55), transparent 65%);
+  filter: blur(2px);
+  opacity: 0;
+}
+
+.ganesh-art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.floral-ring {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.floral-ring .petal {
+  position: absolute;
+  font-size: 18px;
+  color: var(--saffron);
+  opacity: 0;
+}
+.p1 { top: 2%; left: 8%; }
+.p2 { top: 10%; right: 2%; color: var(--maroon); }
+.p3 { bottom: 6%; left: 0%; color: var(--leaf); }
+.p4 { bottom: 0%; right: 10%; }
+.p5 { top: 45%; left: -6%; color: var(--gold); }
+.p6 { top: 40%; right: -6%; color: var(--maroon); }
+
+.intro-om {
+  font-family: var(--font-display-hi);
+  font-size: 1.05rem;
+  color: var(--maroon);
+  letter-spacing: 0.03em;
+  margin: 0 0 6px;
+  opacity: 0;
+}
+
+.intro-family {
+  font-family: var(--font-display-en);
+  font-weight: 600;
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  letter-spacing: 0.08em;
+  color: var(--maroon-deep);
+  margin: 0 0 8px;
+  opacity: 0;
+}
+
+.intro-line {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+  opacity: 0;
+}
+
+.intro-hindi {
+  font-family: var(--font-display-hi);
+  font-size: 1rem;
+  color: var(--leaf);
+  margin: 0 0 var(--space-md);
+  opacity: 0;
+}
+
+.reveal-item { will-change: transform, opacity; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 15px 34px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 48px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--maroon-deep);
+  box-shadow: 0 6px 18px rgba(184,134,11,0.35);
+}
+
+.btn-outline {
+  background: var(--white);
+  color: var(--maroon-deep);
+  border-color: rgba(107,20,32,0.25);
+}
+
+.intro-enter { opacity: 0; }
+
+/* =========================================================
+   MAIN CONTENT SHELL
+   ========================================================= */
+
+.main-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-bottom: var(--space-xl);
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .main-content { max-width: 560px; }
+}
+
+.section {
+  position: relative;
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  text-align: center;
+}
+
+.section-title {
+  font-family: var(--font-display-en);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 6vw, 2.1rem);
+  color: var(--maroon-deep);
+  margin: 0 0 var(--space-md);
+}
+
+.section-title--light { color: var(--gold-light); }
+
+.eyebrow-soft {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin: 0 0 var(--space-sm);
+}
+
+/* Nav */
+.site-nav {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 18px;
+  background: rgba(255,253,249,0.92);
+  border: var(--border-gold);
+  border-radius: 999px;
+  padding: 10px 20px;
+  z-index: 50;
+  box-shadow: 0 8px 24px rgba(74,13,22,0.12);
+  backdrop-filter: blur(6px);
+}
+.site-nav a {
+  font-size: 0.85rem;
+  color: var(--maroon-deep);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 4px;
+}
+.site-nav a:hover, .site-nav a:focus-visible { color: var(--saffron); }
+
+/* Music toggle */
+.music-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,253,249,0.92);
+  border: var(--border-gold);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--maroon-deep);
+  cursor: pointer;
+  min-height: 40px;
+}
+.music-toggle[aria-pressed="true"] .music-icon { color: var(--saffron); }
+.music-icon { font-size: 1rem; }
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.welcome-section { padding-top: var(--space-lg); }
+
+.ornament-divider { width: 100%; max-width: 260px; margin: 0 auto var(--space-md); opacity: 0.8; }
+.ornament-divider.bottom { margin-top: var(--space-md); margin-bottom: 0; }
+
+.family-name {
+  font-family: var(--font-display-en);
+  font-weight: 600;
+  font-size: clamp(2rem, 9vw, 2.5rem);
+  color: var(--maroon);
+  letter-spacing: 0.04em;
+  margin: 0 0 var(--space-sm);
+}
+
+.welcome-copy {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 320px;
+  margin: 0 auto var(--space-lg);
+}
+
+.mandala-wrap { width: 160px; margin: 0 auto; opacity: 0.85; }
+.mandala { animation: slowRotate 60s linear infinite; }
+
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   EVENT DATE CARDS
+   ========================================================= */
+
+.events-section { padding-top: var(--space-lg); }
+
+.date-card {
+  background: var(--white);
+  border: var(--border-gold);
+  border-radius: 18px;
+  padding: var(--space-md) var(--space-sm);
+  margin-bottom: var(--space-md);
+  text-align: left;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(74,13,22,0.06);
+}
+
+.date-card::before {
+  content: "";
+  position: absolute;
+  top: 10px; left: 10px; right: 10px; bottom: 10px;
+  border: 1px solid rgba(184,134,11,0.18);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.date-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(107,20,32,0.25);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+.date-num {
+  font-family: var(--font-display-en);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--maroon-deep);
+  letter-spacing: 0.03em;
+}
+
+.date-tag {
+  font-family: var(--font-display-hi);
+  font-size: 0.95rem;
+  color: var(--saffron);
+}
+
+.event-list { list-style: none; margin: 0; padding: 0; }
+
+.event-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px 0;
+}
+.event-item + .event-item { border-top: 1px solid rgba(184,134,11,0.15); }
+
+.event-icon { font-size: 1.5rem; line-height: 1; margin-top: 2px; }
+
+.event-text h3 {
+  font-family: var(--font-display-hi);
+  font-size: 1.15rem;
+  color: var(--maroon);
+  margin: 0 0 2px;
+}
+.event-text .event-meta {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+.timeline-section { padding-top: var(--space-lg); }
+
+.timeline {
+  position: relative;
+  padding-left: 42px;
+  text-align: left;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 20px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--maroon) 100%);
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+.timeline-date {
+  font-family: var(--font-display-en);
+  font-weight: 600;
+  color: var(--saffron);
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  margin: var(--space-sm) 0 var(--space-xs) -42px;
+  padding-left: 0;
+  text-align: center;
+  width: 100%;
+}
+.timeline-date:first-child { margin-top: 0; }
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-md);
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -42px;
+  top: -2px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: var(--border-gold);
+  border-radius: 50%;
+  font-size: 1rem;
+}
+
+.timeline-body h3 {
+  font-family: var(--font-display-hi);
+  font-size: 1.1rem;
+  color: var(--maroon-deep);
+  margin: 4px 0 2px;
+}
+.timeline-body p { margin: 0; color: var(--ink-soft); font-size: 0.9rem; }
+
+/* =========================================================
+   ENGAGEMENT
+   ========================================================= */
+
+.engagement-section {
+  background: linear-gradient(180deg, var(--beige), var(--ivory));
+}
+
+.ring-motif { width: 110px; margin: 0 auto var(--space-sm); }
+.ring-draw {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+}
+
+.engagement-photo { margin: var(--space-md) auto; max-width: 260px; }
+.photo-placeholder {
+  aspect-ratio: 4/5;
+  border: 2px dashed rgba(184,134,11,0.4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  background: rgba(255,253,249,0.6);
+}
+
+.engagement-details {
+  text-align: left;
+  max-width: 320px;
+  margin: var(--space-md) auto 0;
+}
+.engagement-details div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(184,134,11,0.18);
+}
+.engagement-details dt {
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.engagement-details dd {
+  margin: 0;
+  text-align: right;
+  color: var(--maroon-deep);
+  font-weight: 600;
+}
+
+/* =========================================================
+   BHAJAN SANDHYA
+   ========================================================= */
+
+.bhajan-section {
+  background: radial-gradient(circle at 50% 0%, var(--maroon) 0%, var(--maroon-deep) 70%);
+  color: var(--white);
+  border-radius: 0;
+}
+
+.diya-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: var(--space-md);
+}
+
+.diya {
+  width: 34px;
+  height: 18px;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  border-radius: 0 0 50% 50% / 0 0 70% 70%;
+  position: relative;
+}
+
+.diya-flame {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 14px;
+  background: radial-gradient(circle, #FFE9A8 0%, var(--saffron) 70%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0;
+  animation: diyaFlicker 2.6s ease-in-out infinite;
+}
+
+@keyframes diyaFlicker {
+  0%, 100% { opacity: 0.85; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+}
+
+.bhajan-line {
+  font-family: var(--font-display-hi);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--gold-light);
+  margin: 0 0 var(--space-md);
+}
+
+.bhajan-details { text-align: left; max-width: 300px; margin: 0 auto; }
+.bhajan-details div {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(233,198,123,0.25);
+  font-size: 0.95rem;
+}
+.bhajan-details dt { color: rgba(255,253,249,0.7); }
+.bhajan-details dd { margin: 0; font-weight: 600; }
+
+/* =========================================================
+   FAMILY PHOTOS
+   ========================================================= */
+
+.photo-gallery {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 4px 4px var(--space-sm);
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.photo-frame {
+  flex: 0 0 auto;
+  width: 150px;
+  height: 190px;
+  background: var(--white);
+  border: 6px solid var(--white);
+  outline: 1px solid rgba(184,134,11,0.3);
+  border-radius: 4px;
+  box-shadow: 0 8px 22px rgba(74,13,22,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  scroll-snap-align: center;
+}
+.gallery-note { color: var(--ink-soft); font-size: 0.9rem; margin-top: var(--space-xs); }
+
+/* =========================================================
+   VENUE
+   ========================================================= */
+
+.venue-name {
+  font-family: var(--font-display-en);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--maroon-deep);
+  margin: 0 0 6px;
+}
+.venue-address {
+  color: var(--ink-soft);
+  margin: 0 0 var(--space-md);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 280px;
+  margin: 0 auto;
+}
+.contact-actions .btn { width: 100%; }
+
+/* =========================================================
+   CLOSING
+   ========================================================= */
+
+.closing-section {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+.closing-line {
+  font-family: var(--font-display-hi);
+  font-size: 1.4rem;
+  line-height: 1.9;
+  color: var(--maroon);
+  margin: 0 0 var(--space-md);
+}
+.closing-signature {
+  color: var(--ink-soft);
+  line-height: 1.8;
+  margin-bottom: var(--space-md);
+}
+.closing-ganesh { width: 60px; margin: 0 auto var(--space-md); }
+
+/* =========================================================
+   PETALS (falling)
+   ========================================================= */
+
+.falling-petal {
+  position: fixed;
+  top: -20px;
+  font-size: 16px;
+  color: var(--saffron);
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.85;
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mandala { animation: none; }
+  .diya-flame { animation: none; opacity: 0.9; }
+  .reveal-item, .ganesh-art, .ganesh-glow, .floral-ring .petal,
+  .timeline-item, .intro-enter { opacity: 1 !important; transform: none !important; }
+  .timeline-line { transform: scaleY(1) !important; }
+  .ring-draw { stroke-dashoffset: 0 !important; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* =========================================================
+   RESPONSIVE — DESKTOP ENHANCEMENT
+   ========================================================= */
+
+@media (min-width: 768px) {
+  .section { padding: var(--space-xl) var(--space-lg); }
+  .date-card { padding: var(--space-lg) var(--space-md); }
+}
+
+
+/* ===== Language toggle, Pratibhoj, Hindi fonts ===== */
+.lang-toggle{position:fixed;top:16px;left:16px;z-index:60;background:rgba(255,253,249,.92);border:var(--border-gold);border-radius:999px;padding:8px 16px;font-family:var(--font-body);font-size:.9rem;font-weight:600;color:var(--maroon-deep);cursor:pointer;min-height:40px}
+.pratibhoj-card{border:2px solid var(--saffron);background:linear-gradient(180deg,#FFF6E6,var(--white));text-align:center}
+.pratibhoj-card .event-item{justify-content:center;text-align:left}
+.pratibhoj-card .map-link{margin-top:var(--space-sm)}
+.event-meta{line-height:1.5}
+html[lang="hi"] h1,html[lang="hi"] h2,html[lang="hi"] h3,html[lang="hi"] .family-name,html[lang="hi"] .intro-line,html[lang="hi"] .closing-line{font-family:var(--font-display-hi);letter-spacing:0}
+html[lang="hi"] .site-nav a{font-size:.8rem}
